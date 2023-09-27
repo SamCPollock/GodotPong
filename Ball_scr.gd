@@ -1,35 +1,42 @@
 extends Sprite2D
 
-var speed = 10
+var vspeed = 5
+var hspeed = 1
+var currentSpeed : Vector2
 var topBounds = 0
 var bottomBounds = 600
 var halfSize = scale.y / 2
 
-@export var upButton : String
-@export var downButton : String
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	currentSpeed = Vector2(hspeed, vspeed)
 	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_pressed(upButton):
-		move_up()
-	if Input.is_action_pressed(downButton):
-		move_down()
+	move()
 	handle_bounds()
-		
-		
-func move_up():
-	translate(Vector2(0, -speed))
-	
-func move_down():
-	translate(Vector2(0, speed))
+	pass
 
+func move():
+	translate(currentSpeed)
+
+func bounceVertical(isAtBottom : bool):
+	print("bounce vertical")
+	if (isAtBottom):
+		currentSpeed.y = -vspeed
+	else:
+		currentSpeed.y = vspeed
+		
+
+func bounceHorizontal():
+	print("bounce horizontal")
+	
 func handle_bounds():
 	var top = position.y - halfSize
 	var bottom = position.y + halfSize
 	if (top < topBounds):
-		position.y = topBounds + halfSize
+		bounceVertical(false)
 	if (bottom > bottomBounds):
-		position.y = bottomBounds - halfSize
+		bounceVertical(true)

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://royccr4bsgte"]
+
+[ext_resource type="Script" path="res://Ball_scr.gd" id="1_17jl5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_76eb7"]
+
+[node name="Ball" type="Sprite2D"]
+modulate = Color(0.290196, 0.564706, 0.615686, 1)
+position = Vector2(104, 79)
+scale = Vector2(40, 40)
+texture = SubResource("PlaceholderTexture2D_76eb7")
+script = ExtResource("1_17jl5")
